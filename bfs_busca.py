@@ -32,37 +32,3 @@ def executar_bfs(mapa, inicio, objetivo, mostrar_processo=True):
                 novo_caminho = caminho + [(nova_linha, nova_coluna)]
                 fila.append((nova_linha, nova_coluna, novo_caminho))
     return None, f"Nenhum caminho encontrado. Nós expandidos: {nos_expandidos}", nos_expandidos
-
-def visualizar_caminho(mapa, caminho=None):
-    if not caminho:
-        for linha in mapa:
-            print(''.join(linha))
-        return
-    mapa_visual = [linha[:] for linha in mapa]
-    for i, (linha, coluna) in enumerate(caminho):
-        if i == 0:
-            mapa_visual[linha][coluna] = 'I'
-        elif i == len(caminho) - 1:
-            mapa_visual[linha][coluna] = 'O'
-        else:
-            mapa_visual[linha][coluna] = '°'
-    for linha in mapa_visual:
-        print(''.join(linha))
-
-def imprimir_relatorio(caminho, nos_expandidos, nome_mapa):
-    print(f"\n{'='*60}")
-    print("RELATÓRIO DA BUSCA BFS")
-    print('='*60)
-    if caminho:
-        print("Existe caminho entre início e objetivo? SIM")
-        print(f"Número de passos do caminho mais curto: {len(caminho)-1} passos")
-    else:
-        print("Existe caminho entre início e objetivo? NÃO")
-        print("Número de passos do caminho mais curto: N/A")
-    print(f"Nós explorados no processo: {nos_expandidos} nós")
-    print(f"\nInformações adicionais:")
-    print(f"   Mapa: {nome_mapa}")
-    if caminho:
-        print(f"   Coordenadas do caminho: {caminho}")
-        print(f"   Eficiência: {len(caminho)}/{nos_expandidos} = {len(caminho)/nos_expandidos:.2%}")
-    print('='*60)
